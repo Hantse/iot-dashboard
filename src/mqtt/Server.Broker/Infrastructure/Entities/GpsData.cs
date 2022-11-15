@@ -18,6 +18,6 @@ namespace Server.Broker.Infrastructure.Entities
         public int GPSSatellitesUsed { get; set; }
         public int CNMax { get; set; }
         public float HDop { get; set; }
-
+        public string FlatContent { get; set; }
     }
 }

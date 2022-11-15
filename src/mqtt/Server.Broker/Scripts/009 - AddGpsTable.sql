@@ -1,6 +1,8 @@
 CREATE TABLE [GpsData](
     Id UNIQUEIDENTIFIER NOT NULL DEFAULT NEWID() PRIMARY KEY,
 	[DeviceName] NVARCHAR(128) NULL,
+    DeviceId UNIQUEIDENTIFIER NOT NULL,
+    [CorrelationId] NVARCHAR(MAX) NULL,
     [Latitude] float NULL, 
     [Longitude] float NULL, 
     MSLAltitude float NULL, 
@@ -11,6 +13,7 @@ CREATE TABLE [GpsData](
     GPSSatellitesUsed int NULL,
     CNMax int NULL,
     UTCDateAndTime NVARCHAR(80) NULL,
+    FlatContent NVARCHAR(320) NULL,
 	DeliverAt DATETIME NULL,
     CreateAt DATETIME NOT NULL DEFAULT GETUTCDATE(),
     CreateBy NVARCHAR(48) NOT NULL,

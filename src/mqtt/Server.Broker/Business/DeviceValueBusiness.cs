@@ -81,8 +81,11 @@ namespace Server.Broker.Business
 
             var dataGps = new GpsData()
             {
+                CorrelationId = correlationId,
                 DeviceName = device.Name,
-                DeviceId = device.Id
+                DeviceId = device.Id,
+                CreateBy = deviceName,
+                FlatContent = content
             };
 
             var dataMapped = new Dictionary<string, string>();
