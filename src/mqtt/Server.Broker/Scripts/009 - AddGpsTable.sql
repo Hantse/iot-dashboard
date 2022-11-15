@@ -1,0 +1,21 @@
+CREATE TABLE [GpsData](
+    Id UNIQUEIDENTIFIER NOT NULL DEFAULT NEWID() PRIMARY KEY,
+	[DeviceName] NVARCHAR(128) NULL,
+    [Latitude] float NULL, 
+    [Longitude] float NULL, 
+    MSLAltitude float NULL, 
+    SpeedOverGround float NULL, 
+    CourseOverGround float NULL, 
+    HDop float NULL, 
+    GNSSSatellitesInView int NULL,
+    GPSSatellitesUsed int NULL,
+    CNMax int NULL,
+    UTCDateAndTime NVARCHAR(80) NULL,
+	DeliverAt DATETIME NULL,
+    CreateAt DATETIME NOT NULL DEFAULT GETUTCDATE(),
+    CreateBy NVARCHAR(48) NOT NULL,
+    DeleteAt DATETIME NULL,
+    DeleteBy NVARCHAR(48) NULL,
+    UpdateAt DATETIME NULL,
+    UpdateBy NVARCHAR(48) NULL
+);

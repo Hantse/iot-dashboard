@@ -1,0 +1,2 @@
+ALTER TABLE Device
+ADD [BoardInformation] NVARCHAR(MAX) NULL;

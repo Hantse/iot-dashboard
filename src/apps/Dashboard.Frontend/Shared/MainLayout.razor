@@ -1,0 +1,35 @@
+﻿@inherits LayoutComponentBase
+
+<Layout Class="layout">
+    <Header>
+        <div class="logo" />
+        <Menu Theme="MenuTheme.Dark" Mode="MenuMode.Horizontal" DefaultSelectedKeys=@(new[]{""})>
+            <MenuItem RouterLink="/" RouterMatch="NavLinkMatch.Prefix" Key="">Dashboard</MenuItem>
+            <MenuItem RouterLink="/devices" RouterMatch="NavLinkMatch.Prefix" Key="devices">Devices</MenuItem>
+            <MenuItem RouterLink="/firmwares" RouterMatch="NavLinkMatch.Prefix" Key="firmwares">Firmwares</MenuItem>
+            <MenuItem RouterLink="/workshop" RouterMatch="NavLinkMatch.Prefix" Key="workshop">Workshop</MenuItem>
+            <MenuItem OnClick="@(async () => await LocalModalService.ShowToolsModal())" Key="tools">Tools</MenuItem>
+        </Menu>
+    </Header>
+    <Content Style="padding: 0 50px;">
+        <div class="site-layout-content">@Body</div>
+    </Content>
+    <Footer Style="text-align: center; ">Ant Design ©2018 Created by Ant UED</Footer>
+</Layout>
+
+<style>
+    .site-layout-content {
+        background: #fff;
+        padding: 24px;
+        min-height: 280px;
+        margin-top: 32px;
+    }
+
+    #components-layout-demo-top .logo {
+        width: 120px;
+        height: 31px;
+        background: rgba(255, 255, 255, 0.2);
+        margin: 16px 24px 16px 0;
+        float: left;
+    }
+</style>

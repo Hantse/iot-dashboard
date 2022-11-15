@@ -1,0 +1,37 @@
+name: stack-iot-dev
+
+extensions:
+- name: zipkin
+# - name: elastic
+#   logPath: ./.logs
+
+network: iot-services
+namespace: iot-services
+
+services:
+- name: frontend-dashboard
+  project: src/apps/Dashboard.Frontend/Dashboard.Frontend.csproj
+  bindings:
+  - port: 5000
+    name: http        
+
+- name: service-mqtt
+  project: src/mqtt/Server.Broker/Server.Broker.csproj
+  replicas: 1
+  bindings:
+  - port: 5001
+    name: http
+
+
+- name: rtsp-server
+  image: aler9/rtsp-simple-server
+  bindings:
+  - port: 8554
+    name: rstp
+    protocol: udp  
+  env:
+  - name: RTSP_PROTOCOLS
+    value: udp
+  volumes:
+    - source: rtsp-simple-server.yml
+      target: /rtsp-simple-server.yml

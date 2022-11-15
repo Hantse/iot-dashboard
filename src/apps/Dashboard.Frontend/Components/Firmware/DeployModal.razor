@@ -1,0 +1,35 @@
+﻿@if (selectedFirmware != null)
+{
+    <h4>@selectedFirmware.Name</h4>
+    <p>@selectedFirmware.Description</p>
+
+    <hr style="margin-top:10px; margin-bottom:10px;" />
+
+    @if (DeviceState.Value != null && DeviceState.Value.Devices != null)
+    {
+        @if (versions != null)
+        {
+            <SimpleSelect Style="width:100%;" ValueChanged="HandleVersionChange">
+                <SelectOptions>
+                    @foreach (var version in versions)
+                    {
+                        <SimpleSelectOption Value="@version.Id.ToString()" Label="@version.Version.ToString()"></SimpleSelectOption>
+                    }
+                </SelectOptions>
+            </SimpleSelect>
+        }
+
+        <SimpleSelect Mode="multiple" Style="width:100%; margin-top:20px;" Values="selectedDevices" ValuesChanged="HandleValueChange">
+            <SelectOptions>
+                @foreach (var device in DeviceState.Value.Devices)
+                {
+                    <SimpleSelectOption Value="@device.Name" Label=@($"{device.Name} - {GetStatus(device.Online)}")></SimpleSelectOption>
+                }
+            </SelectOptions>
+        </SimpleSelect>
+    }
+}
+
+<hr style="margin-top:10px; margin-bottom:10px;" />
+
+<Button style="display:block; width:100%" Type="primary" OnClick="Deploy" Loading="loadInProgress">Deploy</Button>

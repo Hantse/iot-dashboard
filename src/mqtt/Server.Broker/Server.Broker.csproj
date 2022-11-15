@@ -1,0 +1,54 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <UserSecretsId>c5104173-94df-408b-9f9b-10e0d0cb876f</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerfileContext>..\..\..</DockerfileContext>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Scripts\001 - InitTable.sql" />
+    <None Remove="Scripts\002 - AddTopicTable.sql" />
+    <None Remove="Scripts\003 - AddDeviceFileTable.sql" />
+    <None Remove="Scripts\004 - AddWorkerTable.sql" />
+    <None Remove="Scripts\005 - AddBoardInformationsColumn.sql" />
+    <None Remove="Scripts\006 - AddChecksumColumn.sql" />
+    <None Remove="Scripts\007 - AddMessageTable.sql" />
+    <None Remove="Scripts\008 - AddDeviceValueTable.sql" />
+    <None Remove="Scripts\009 - AddGpsTable.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\001 - InitTable.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Scripts\002 - AddTopicTable.sql" />
+    <EmbeddedResource Include="Scripts\003 - AddDeviceFileTable.sql" />
+    <EmbeddedResource Include="Scripts\004 - AddWorkerTable.sql" />
+    <EmbeddedResource Include="Scripts\005 - AddBoardInformationsColumn.sql" />
+    <EmbeddedResource Include="Scripts\006 - AddChecksumColumn.sql" />
+    <EmbeddedResource Include="Scripts\008 - AddDeviceValueTable.sql" />
+    <EmbeddedResource Include="Scripts\007 - AddMessageTable.sql" />
+    <EmbeddedResource Include="Scripts\009 - AddGpsTable.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="IA.Infrastructure.Core" Version="1.1.0-CI-20210808-153541" />
+    <PackageReference Include="JsonFlatten" Version="1.0.2" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.11.1" />
+    <PackageReference Include="MQTTnet" Version="3.1.2" />
+    <PackageReference Include="MQTTnet.AspNetCore" Version="3.1.2" />
+    <PackageReference Include="MQTTnet.AspNetCore.AttributeRouting" Version="0.3.16" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\shared\Service.Shared\Service.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Medias\" />
+  </ItemGroup>
+
+</Project>

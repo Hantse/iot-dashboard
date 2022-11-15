@@ -1,0 +1,27 @@
+﻿<SimpleSelect DefaultValue="SelectedTool" Style="width:60%;" OnSelectedItemChanged="handleChange">
+    <SelectOptions>
+        <SimpleSelectOption Value="BatteryAutonomy" Label="Battery Autonomy"></SimpleSelectOption>
+        <SimpleSelectOption Value="VoltageDivider" Label="Voltage cmd
+        Divider"></SimpleSelectOption>
+    </SelectOptions>
+</SimpleSelect>
+<hr />
+@if (SelectedTool == "BatteryAutonomy")
+{
+    <BatteryAutonomy />
+}
+else if (SelectedTool == "VoltageDivider")
+{
+    <VoltageDividerCalculator />
+}
+
+@code {
+    [Parameter]
+    public string SelectedTool { get; set; } = "BatteryAutonomy";
+
+    void handleChange(string value)
+    {
+        SelectedTool = value;
+        StateHasChanged();
+    }
+}

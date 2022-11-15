@@ -1,0 +1,4 @@
+﻿@if (!string.IsNullOrEmpty(ImgSrc))
+{
+    <img style='border:3px solid black; display:block; margin:auto; width:@(Width); height:@(Height); transform: rotate(@(Rotate)deg); object-fit: contain;' src='@ImgSrc' />
+}

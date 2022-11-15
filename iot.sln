@@ -1,0 +1,79 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31612.314
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{2372BAD0-9A7A-48E4-9954-96D6AE870BA7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "mqtt", "mqtt", "{39D1A819-F9DD-4536-AF07-393D69220486}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Server.Broker", "src\mqtt\Server.Broker\Server.Broker.csproj", "{F65340F7-1D0D-4AA1-920E-F8A5C597E16F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{742FE2A5-C7AD-4C8C-9A3B-FA67AE6FA611}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Server.Broker.Client", "tests\mqtt\Server.Broker.Client\Server.Broker.Client.csproj", "{D3B14B14-5E1D-462F-9459-527F9D429BFE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "apps", "apps", "{582D9CAF-6518-4090-A355-ABA4A22BB6E2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "shared", "shared", "{44E6FF91-2763-4436-82EE-F515B7F88A84}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service.Shared", "src\shared\Service.Shared\Service.Shared.csproj", "{4F6C471F-0F9F-4405-B349-877E86CC8CFF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dashboard.Frontend", "src\apps\Dashboard.Frontend\Dashboard.Frontend.csproj", "{EAC22D42-9E42-4FFF-9D0E-BF14CE67EA96}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "rtsp", "rtsp", "{29DF32DB-5096-4738-8690-09FAF54EBCDF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F742D161-4CA3-4C9A-A0FC-C3BFA94304ED}"
+	ProjectSection(SolutionItems) = preProject
+		tye.yaml = tye.yaml
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeviceConfigurator", "src\apps\DeviceConfigurator\DeviceConfigurator.csproj", "{F2ACAE32-05EA-45D5-B7D1-D0EF4CB54B37}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F65340F7-1D0D-4AA1-920E-F8A5C597E16F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F65340F7-1D0D-4AA1-920E-F8A5C597E16F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F65340F7-1D0D-4AA1-920E-F8A5C597E16F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F65340F7-1D0D-4AA1-920E-F8A5C597E16F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3B14B14-5E1D-462F-9459-527F9D429BFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3B14B14-5E1D-462F-9459-527F9D429BFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3B14B14-5E1D-462F-9459-527F9D429BFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3B14B14-5E1D-462F-9459-527F9D429BFE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F6C471F-0F9F-4405-B349-877E86CC8CFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F6C471F-0F9F-4405-B349-877E86CC8CFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F6C471F-0F9F-4405-B349-877E86CC8CFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F6C471F-0F9F-4405-B349-877E86CC8CFF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EAC22D42-9E42-4FFF-9D0E-BF14CE67EA96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EAC22D42-9E42-4FFF-9D0E-BF14CE67EA96}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EAC22D42-9E42-4FFF-9D0E-BF14CE67EA96}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EAC22D42-9E42-4FFF-9D0E-BF14CE67EA96}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2ACAE32-05EA-45D5-B7D1-D0EF4CB54B37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2ACAE32-05EA-45D5-B7D1-D0EF4CB54B37}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2ACAE32-05EA-45D5-B7D1-D0EF4CB54B37}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{F2ACAE32-05EA-45D5-B7D1-D0EF4CB54B37}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2ACAE32-05EA-45D5-B7D1-D0EF4CB54B37}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2ACAE32-05EA-45D5-B7D1-D0EF4CB54B37}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{39D1A819-F9DD-4536-AF07-393D69220486} = {2372BAD0-9A7A-48E4-9954-96D6AE870BA7}
+		{F65340F7-1D0D-4AA1-920E-F8A5C597E16F} = {39D1A819-F9DD-4536-AF07-393D69220486}
+		{D3B14B14-5E1D-462F-9459-527F9D429BFE} = {742FE2A5-C7AD-4C8C-9A3B-FA67AE6FA611}
+		{582D9CAF-6518-4090-A355-ABA4A22BB6E2} = {2372BAD0-9A7A-48E4-9954-96D6AE870BA7}
+		{44E6FF91-2763-4436-82EE-F515B7F88A84} = {2372BAD0-9A7A-48E4-9954-96D6AE870BA7}
+		{4F6C471F-0F9F-4405-B349-877E86CC8CFF} = {44E6FF91-2763-4436-82EE-F515B7F88A84}
+		{EAC22D42-9E42-4FFF-9D0E-BF14CE67EA96} = {582D9CAF-6518-4090-A355-ABA4A22BB6E2}
+		{29DF32DB-5096-4738-8690-09FAF54EBCDF} = {2372BAD0-9A7A-48E4-9954-96D6AE870BA7}
+		{F2ACAE32-05EA-45D5-B7D1-D0EF4CB54B37} = {582D9CAF-6518-4090-A355-ABA4A22BB6E2}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F249C7E9-A1F5-43FD-80F6-CC069F30D6E7}
+	EndGlobalSection
+EndGlobal

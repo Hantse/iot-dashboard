@@ -1,0 +1,21 @@
+﻿@page "/firmwares"
+
+<PageHeader Class="site-page-header" Title="Firmwares List" Subtitle="(RT)" />
+
+<Row Gutter="16">
+    <AntDesign.Col Class="gutter-row" Span="20">
+        <Dashboard.Frontend.Components.Firmware.FirmwareList />
+    </AntDesign.Col>
+    <AntDesign.Col Class="gutter-row" Span="4">
+        <Upload Action="http://localhost:5001/api/firmware/upload"
+                OnCompleted="OnCompleteCallback"
+                ListType="picture-card"
+                ShowUploadList="false">
+            <div>
+                <Icon Type="plus"></Icon>
+                <div className="ant-upload-text">Upload</div>
+            </div>
+        </Upload>
+    </AntDesign.Col>
+</Row>
+

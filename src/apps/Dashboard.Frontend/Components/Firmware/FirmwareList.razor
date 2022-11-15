@@ -1,0 +1,14 @@
+﻿@if (FirmwareState != null && FirmwareState.Value != null)
+{
+    <Table TItem="FirmwareItemResponse" DataSource="@FirmwareState.Value.Firmwares" Loading="FirmwareState.Value.LoadInProgress" Bordered>
+        <Column @bind-Field="@context.Name" Sortable>
+            <a href="/firmwares/@context.Id">@context.Name</a>
+        </Column>
+        <Column @bind-Field="@context.Description" />
+        <Column @bind-Field="@context.Version" />
+        <Column @bind-Field="@context.LastVersionDate" />
+        <ActionColumn>
+            <Button Type="primary" Icon="deployment-unit" Size="large" OnClick="@(() => OpenDeployDialog(context.Id))" />
+        </ActionColumn>
+    </Table>
+}

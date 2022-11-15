@@ -1,0 +1,32 @@
+﻿@page "/"
+
+
+
+<Card Title="Device list">
+    <Body>
+        @if (deviceFound)
+        {
+            <h3>@deviceName</h3>
+
+            @if (availableNetworks != null)
+            {
+                <SimpleSelect OnSelectedItemChanged="handleChange">
+                    <SelectOptions>
+                        @foreach (var network in availableNetworks)
+                        {
+                            <SimpleSelectOption Value="@(network.Ssid)" Label="@(network.Ssid)"></SimpleSelectOption>
+                        }
+                    </SelectOptions>
+                </SimpleSelect>
+            }
+
+            <Input Placeholder="Basic usage" @bind-Value="@password" />
+
+            <Button Disabled="string.IsNullOrEmpty(ssid) || string.IsNullOrEmpty(password)" OnClick="Configure" Type="@ButtonType.Primary">Configure device</Button>
+        }
+        else
+        {
+            <Spin size="large" />
+        }
+    </Body>
+</Card>

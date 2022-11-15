@@ -1,0 +1,15 @@
+﻿<div class="mb-2">
+    <Text>Battery value</Text>
+    <AntDesign.InputNumber Formatter="FormatMah" Parser="ParseMah" DefaultValue="700.0" style="width:100%" />
+</div>
+<div class="mb-2">
+    <Text>Consumption</Text>
+    <AntDesign.InputNumber Formatter="FormatConsumptionMah" Parser="ParseConsumptionMah" DefaultValue="65.0" style="width:100%" />
+</div>
+
+@if (Result != null)
+{
+    <h4>@Result.Value.ToString(@"dd\.hh\:mm\:ss")</h4>
+}
+
+<Button OnClick="@(() => CalculateDuration())">Calculate</Button>

@@ -1,0 +1,24 @@
+﻿<div @ref="commandRef" tabindex="0"
+     style="width:200px; margin:auto; padding:1em;"
+     @onkeydown="KeyboardEventHandler" @onkeypress="KeyboardEventHandler" @onkeyup="KeyboardEventHandler">
+    <table style="width:100%">
+        <tr>
+            <td style="border:none"></td>
+            <td style="text-align:center">
+                <Icon Type="@GetIcone("ArrowUp")" Theme="@IsFill("ArrowUp")" />
+            </td>
+            <td style="border:none"></td>
+        </tr>
+        <tr>
+            <td style="text-align:center"><Icon Type="@GetIcone("ArrowLeft")" Theme="@IsFill("ArrowLeft")" /></td>
+            <td style="text-align:center"><Icon Type="@GetIcone("ArrowDown")" Theme="@IsFill("ArrowDown")" /></td>
+            <td style="text-align:center"><Icon Type="@GetIcone("ArrowRight")" Theme="@IsFill("ArrowRight")" /></td>
+        </tr>
+    </table>
+</div>
+
+<Slider TValue="double" DefaultValue="50" Min="1" Max="255" @bind-Value="@PwmValue" />
+<h5 style="text-align:center">@PwmValue</h5>
+
+<h4>@KeyPressed </h4>
+<h4>@EventInfo</h4>

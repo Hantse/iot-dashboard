@@ -1,0 +1,53 @@
+﻿@if (DeviceState != null && DeviceState.Value != null)
+{
+    <Table TItem="DeviceItemResponse" DataSource="@DeviceState.Value.Devices" Loading="DeviceState.Value.LoadInProgress" Bordered>
+        <Column @bind-Field="@context.Name" Sortable>
+            <a href="/devices/@context.Id">@context.Name</a>
+        </Column>
+        <ActionColumn Title="Last picture" style="text-align:center;">
+            @if (context.Name.Contains("CAM") && context.Online)
+            {
+                <Button Style="margin-bottom:10px;" OnClick="@(() => ShootDeviceAsync(context.Name))">Shoot</Button>
+                <Dashboard.Frontend.Components.Core.ImageViewer Width="80px" Height="80px" ImgSrc="@("http://" + context.Ip + "/stream")" Rotate="90" />
+            }
+        </ActionColumn>
+        <Column @bind-Field="@context.Online" Filterable Sortable>
+            @if (context.Online)
+            {
+            <Tag Color="Green">Online</Tag>
+            }
+            else
+            {
+            <Tag Color="Red">Offline</Tag>
+            }
+        </Column>
+        <Column @bind-Field="@context.PingRoutineCount" Title="Ping" Sortable />
+        <Column @bind-Field="@context.ConnectionRoutineCount" Title="Connection" />
+        <Column @bind-Field="@context.SubscribeRoutineCount" Title="Subscribe" />
+        <Column @bind-Field="@context.UnsubscribeRoutineCount" Title="Unsubscribe" />
+        <Column @bind-Field="@context.MessageRoutineCount" Title="Message" />
+        <Column @bind-Field="@context.Topics">
+        @foreach (var topic in context.Topics)
+            {
+            <Tag OnClick="@(async () => await SendMessageAsync(context, topic))" Color="blue-inverse" Style="display:block; margin-bottom:3px;">@topic</Tag>
+            }
+    </Column>
+</Table>
+}
+
+<Modal Title="Send test message"
+       Visible="@visible"
+       OnCancel="HandleCancel"
+       OkText="@("Send message")"
+       OnOk="HandleOk"
+       DestroyOnClose="true">
+    <SimpleSelect DefaultValue="@selectedTopic" @bind-Value="@selectedTopic" Style="width:100%; margin-bottom:20px;">
+        <SelectOptions>
+            @foreach (var topic in deviceModal.Topics)
+            {
+                <SimpleSelectOption Value="@topic" Label="@topic"></SimpleSelectOption>
+            }
+        </SelectOptions>
+    </SimpleSelect>
+    <TextArea MinRows="6" @bind-Value="message" style="margin-top:20px;min-height:80px;" OnChange="onChange" />
+</Modal>

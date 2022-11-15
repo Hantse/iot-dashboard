@@ -1,0 +1,161 @@
+﻿@page "/devices/{Id:guid}"
+
+@if (DeviceState != null && DeviceState.Value != null && DeviceState.Value.Device != null)
+{
+    <PageHeader Class="site-page-header" Title="Devices" Subtitle="@DeviceState.Value.Device.Name" />
+    @if (DeviceState.Value.Device.Name.Contains("CAM"))
+    {
+        <Button Style="margin-bottom:10px;" Type="@ButtonType.Primary" OnClick="@(() => ShootDeviceAsync(DeviceState.Value.Device.Name))">Shoot</Button>
+        <Button Style="margin-bottom:10px; margin-left:10px" Type="@GetType()" OnClick="@(() => ToggleFlashlight(DeviceState.Value.Device.Name))" Icon="@GetIcone()">Toggle flash</Button>
+    }
+    <Button Style="margin-bottom:10px; margin-left:10px; margin-right:10px;" OnClick="@(() => IdentifyDeviceAsync(DeviceState.Value.Device.Name))">Identify</Button>
+    @if (DeviceState.Value.Device.Online)
+    {
+        <Tag Color="Green">Online</Tag>
+    }
+    else
+    {
+        <Tag Color="Red">Offline</Tag>
+    }
+    <hr style="margin-bottom:2em;" />
+    <Row Gutter="16">
+        <AntDesign.Col Class="gutter-row" Span="8">
+            @if (DeviceState.Value.Device.Name.Contains("CAM"))
+            {
+                <div style="margin-top:80px;margin-bottom:80px;">
+                    <Dashboard.Frontend.Components.Core.ImageViewer Width="100%" Height="100%" ImgSrc="@("http://" + DeviceState.Value.Device.Ip + "/stream")" Rotate="90" />
+                </div>
+            }
+
+            @foreach (var topic in DeviceState.Value.Device.Topics)
+            {
+                <Tag Color="blue-inverse" Style="display:block; margin-bottom:3px;">@topic</Tag>
+            }
+
+            <Collapse Style="margin:auto;margin-top:2em;">
+                @foreach (var log in logs)
+                {
+                    <Panel Header="@($"{log.CreateAt.ToString()} ({log.RoutineKey})")" Key="@log.RoutineKey">
+                        <Timeline Mode="@TimelineMode.Left">
+                            @foreach (var item in log.Grouped)
+                            {
+                                <TimelineItem Dot="@GetTypeIcone(item.Type)" Color="red" Label="@item.CreateAt.ToString()">
+                                    <p>@item.Type</p>
+                                    @if (!string.IsNullOrEmpty(item.Content))
+                                    {
+                                        <p> @item.Content</p>
+                                    }
+                                </TimelineItem>
+                            }
+                        </Timeline>
+                    </Panel>
+                }
+            </Collapse>
+        </AntDesign.Col>
+        <AntDesign.Col Class="gutter-row" Span="12">
+            <table class="table table-bordered">
+                <tr>
+                    <td>
+                        Board Name
+                    </td>
+                    <td>
+                        @DeviceState.Value.Device.Name
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Board IP
+                    </td>
+                    <td>
+                        @DeviceState.Value.Device.Ip
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Board Informations
+                    </td>
+                    <td>
+                        <table class="table table-bordered" style="width:100%; margin:0px;">
+                            @foreach (var kvp in DeviceState.Value.Device.MappedBoardInformationValues)
+                            {
+                                <tr>
+                                    <td>
+                                        @kvp.Key
+                                    </td>
+                                    <td>
+                                        @if (kvp.Key == "freeHeap" || kvp.Key == "spi_flash_size")
+                                        {
+                                            @GetDataLabels(kvp.Key, kvp.Value)
+                                        }
+                                        else
+                                        {
+                                            @kvp.Value
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </AntDesign.Col>
+        <AntDesign.Col Class="gutter-row" Span="4">
+            <SimpleSelect DefaultValue="directionnalController" Style="width: 100%; margin-bottom:2em;" OnSelectedItemChanged="handleChange">
+                <SelectOptions>
+                    <SimpleSelectOption Value="directionnalController" Label="Directionnal Controller"></SimpleSelectOption>
+                </SelectOptions>
+            </SimpleSelect>
+            @if (commandTester == "directionnalController")
+            {
+                <Dashboard.Frontend.Components.Controls.DirectionnalController DeviceName="@DeviceState.Value.Device.Name" />
+            }
+        </AntDesign.Col>
+
+    </Row>
+}
+
+@code {
+    RenderFragment dotTemplateDeviceConnection =
+    @<Template>
+        <Icon Type="login" Theme="outline" Style="font-size: 20px;" />
+    </Template>
+        ;
+
+    RenderFragment dotTemplateDeviceSubscribe =
+    @<Template>
+        <Icon Type="appstore-add" Theme="outline" Style="font-size: 20px;" />
+    </Template>
+        ;
+
+    RenderFragment dotTemplateDeviceDisconnection =
+    @<Template>
+        <Icon Type="logout" Theme="outline" Style="font-size: 20px;" />
+    </Template>
+        ;
+
+    RenderFragment dotTemplateDeviceFile =
+    @<Template>
+        <Icon Type="file-add" Theme="outline" Style="font-size: 20px;" />
+    </Template>
+    ;
+
+    public RenderFragment GetTypeIcone(string type)
+    {
+        if (type == "DeviceSubscribe")
+        {
+            return dotTemplateDeviceSubscribe;
+        }
+
+        if (type == "DeviceDisconnection")
+        {
+            return dotTemplateDeviceDisconnection;
+        }
+
+        if (type == "DeviceFile")
+        {
+            return dotTemplateDeviceFile;
+        }
+
+        return dotTemplateDeviceConnection;
+    }
+}
