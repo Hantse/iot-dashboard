@@ -1,0 +1,9 @@
+﻿@page "/livemap"
+@inherits FluxorComponent
+
+<h4>Duration total : @durationTotalString</h4>
+<h4>Distance total : @distanceTotalString</h4>
+
+<div style="height:640px">
+    <GoogleMap @ref="@map" Id="map" Options="@mapOptions" OnAfterInit="@(async () => await OnAfterInitAsync())" Height="100%"></GoogleMap>
+</div>

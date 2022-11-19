@@ -22,16 +22,18 @@ namespace Dashboard.Frontend.Stores.States
         {
         }
 
-        public DeviceState(IEnumerable<DeviceItemResponse> devices, bool loadInProgress, string error, bool isError, DeviceItemResponse device)
-           : this(loadInProgress, error, isError)
-        {
-            Devices = devices;
-            Device = device;
-        }
+		public DeviceState(IEnumerable<DeviceItemResponse> devices, bool loadInProgress, string error, bool isError, DeviceItemResponse device, GpsDataResponse devicePosition)
+		   : this(loadInProgress, error, isError)
+		{
+			Devices = devices;
+			Device = device;
+			DevicePosition = devicePosition;
+		}
 
 
-        public IEnumerable<DeviceItemResponse> Devices { get; }
+		public IEnumerable<DeviceItemResponse> Devices { get; }
         public DeviceItemResponse Device { get; }
+        public GpsDataResponse DevicePosition { get; }
 
     }
 }

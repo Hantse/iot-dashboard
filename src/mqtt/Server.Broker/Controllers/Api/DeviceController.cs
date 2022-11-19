@@ -36,7 +36,19 @@ namespace Server.Broker.Controllers.Api
             return Ok(await deviceBusiness.GetDevicesAsync());
         }
 
-        [HttpGet("{id}")]
+		[HttpGet("last-gps")]
+		public async Task<IActionResult> GetLastGps([FromQuery]string deviceName)
+		{
+			return Ok(await deviceBusiness.GetDeviceLastPositionAsync(deviceName));
+		}
+
+		[HttpGet("gps")]
+		public async Task<IActionResult> GetAllGps([FromQuery] string deviceName)
+		{
+			return Ok(await deviceBusiness.GetDeviceAllPositionAsync(deviceName));
+		}
+
+		[HttpGet("{id}")]
         public async Task<IActionResult> GetDevice(Guid id)
         {
             var devices = await deviceBusiness.GetDevicesAsync();

@@ -9,7 +9,9 @@ namespace Server.Broker.Interfaces
 {
     public interface IDeviceBusiness
     {
-        Task<DeviceItemResponse[]> GetDevicesAsync();
+        Task<GpsDataResponse> GetDeviceLastPositionAsync(string deviceName);
+        Task<List<GpsDataResponse>> GetDeviceAllPositionAsync(string deviceName);
+		Task<DeviceItemResponse[]> GetDevicesAsync();
         Task<DeviceLogItemResponse[]> GetDeviceLog(Guid id);
         Task<bool> UploadFileAsync(string deviceId, IFormFile file);
         Task<bool> UpdateDeviceIpAsync(string deviceName, string ip);

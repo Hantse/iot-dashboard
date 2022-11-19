@@ -7,7 +7,8 @@ namespace Dashboard.Frontend.Interfaces
 {
     public interface IDeviceService
     {
-        Task<DeviceItemResponse> GetDeviceAsync(Guid id);
+        Task<IEnumerable<GpsDataResponse>> GetDeviceGpsAsync(string name);
+		Task<DeviceItemResponse> GetDeviceAsync(Guid id);
         Task<IEnumerable<DeviceLogItemResponse>> GetDeviceLogsAsync(Guid id);
         Task<IEnumerable<DeviceItemResponse>> GetDevicesAsync();
         Task<bool> SendDeviceMessageAsync(string topic, string message);

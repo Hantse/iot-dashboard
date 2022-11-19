@@ -41,7 +41,18 @@ namespace Dashboard.Frontend.Services
             return null;
         }
 
-        public async Task<IEnumerable<DeviceItemResponse>> GetDevicesAsync()
+		public async Task<IEnumerable<GpsDataResponse>> GetDeviceGpsAsync(string name)
+		{
+			var response = await httpClient.GetAsync($"device/gps?deviceName={name}");
+			if (response.IsSuccessStatusCode)
+			{
+				return JsonSerializer.Deserialize<IEnumerable<GpsDataResponse>>(await response.Content.ReadAsStringAsync());
+			}
+
+			return null;
+		}
+
+		public async Task<IEnumerable<DeviceItemResponse>> GetDevicesAsync()
         {
             var response = await httpClient.GetAsync("device");
             if (response.IsSuccessStatusCode)
